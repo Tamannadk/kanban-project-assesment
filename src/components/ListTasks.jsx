@@ -146,10 +146,18 @@ const Task = ({ task, tasks, setTasks }) => {
     }),
   }));
 
+//   const handleRemove = (id) => {
+//     const filteredTasks = tasks.filter((t) => t.id !== id);
+//     localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+//     setTasks(filteredTasks);
+//   };
+
   const handleRemove = (id) => {
-    const filteredTasks = tasks.filter((t) => t.id !== id);
-    localStorage.setItem("tasks", JSON.stringify(filteredTasks));
-    setTasks(filteredTasks);
+    setTasks((prev) => {
+      const filteredTasks = prev.filter((t) => t.id !== id);
+      localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+      return filteredTasks;
+    });
   };
 
   return (
